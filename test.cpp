@@ -131,9 +131,20 @@ void bubble(void)
 
 int main()
 {
-    bubble();
+    int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int row = sizeof(arr) / sizeof(arr[0]);
+    int col = sizeof(arr) / sizeof(arr[0][0]) / row;
+    for (int i=0; i < row; i++)
+    {
+        int sub_sum = 0;
+        for (int j=0; j < col; j++)
+        {
+            sub_sum += arr[i][j];
+            
+        }
+        cout << sub_sum << "++" << endl;
+    }
     system("pause");
-
 }
 
 
