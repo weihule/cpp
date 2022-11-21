@@ -1,9 +1,7 @@
 #include <iostream>
-#include "swap.h"
+#include <string.h>
 
 using namespace std;
-
-void swap(int *, int *);
 
 void bubble(int *arr, int length)
 {
@@ -29,15 +27,40 @@ struct Student
 	int score;
 };
 
+struct Teacher
+{
+	int teacher_id;
+	string name;
+	int age;
+	struct Student stu;
+};
+
+void print_teacher(const struct Teacher *p)
+{
+    cout << p->teacher_id << " " << p->name << " " << p->age << " " << p->stu.name << " " << endl;
+}
+
+
+void print_student(const struct Student *p)
+{
+    cout << p->name << " " << p->age << " " << p->score << endl;
+}
+
 int main(int argc, char *argv[])
 {
-	int arr[] = {4, 3, 6, 9, 1, 2, 10, 8, 7, 5};
-	int len = sizeof(arr)/sizeof(arr[0]);
-	bubble(arr, len);
-	for (int i=0; i<len; i++)
+	struct Student stu_arr[3] = 
 	{
-		cout << arr[i] << " ";
-	}
-	cout << endl;
+		{"bob", 24, 120},
+		{"tom", 25, 120},
+		{"john", 23, 120}
+	};
+	int length = sizeof(stu_arr) / sizeof(stu_arr[0]);
+	cout << length << endl;
+
+	struct Student *p = stu_arr;
+
+	struct Teacher t1 = {10001, "李老师", 38, {"bob", 24, 121}};
+	print_teacher(&t1);
+
 	system("pause");
 }
