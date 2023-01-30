@@ -1,1 +1,8 @@
 */*/*.o
+*/.idea/
+*/*/.idea/
+.vs/
+*/Debug/
+*/*.exe
+*/*.obj
+*/cmake-build-debug/
