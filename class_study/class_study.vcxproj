@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{91006985-f7dd-4ae9-8f9b-c272ef9f5d43}</ProjectGuid>
-    <RootNamespace>employeemanager</RootNamespace>
+    <ProjectGuid>{caaba17d-5a6c-4efc-abed-697c0481228b}</ProjectGuid>
+    <RootNamespace>classstudy</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,14 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="employee.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="worker_manager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="employee.h" />
-    <ClInclude Include="worker.h" />
-    <ClInclude Include="worker_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

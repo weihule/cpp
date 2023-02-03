@@ -3,6 +3,8 @@
 #include <fstream>
 
 #include "worker_manager.h"
+#include "worker.h"
+#include "employee.h"
 
 using namespace std;
 
@@ -41,6 +43,15 @@ void read_file()
 
 int main()
 {
+	//Worker* w = new Employee(2020225001, "方旋恒", 1);
+	//w->show_info();
+
+	//Worker* w2 = new Manager(1052011, "风清扬", 2);
+	//w2->show_info();
+
+	//Worker* w3 = new Boss(001, "谢逊", 004);
+	//w3->show_info();
+	
 	WorkerManager wm;
 	int choice = 0;
 	while (true)
@@ -55,6 +66,7 @@ int main()
 			wm.exit_system();
 			break;
 		case (1):    // 添加
+			wm.add_person();
 			break;
 		case (2):    // 显示
 			break;
@@ -69,7 +81,7 @@ int main()
 		case (7):    // 清空文件
 			break;
 		default:
-			system("cls");
+			system("cls");   // 清屏
 			break;
 		}
 	}
@@ -77,3 +89,4 @@ int main()
 	return 0;
 	system("pause");
 }
+
