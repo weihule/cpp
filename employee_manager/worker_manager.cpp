@@ -3,11 +3,40 @@
 
 WorkerManager::WorkerManager()
 {
-	// 初始化人数
-	this->m_emp_num = 0;
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);		// 读文件
 
-	// 初始化数组指针
-	this->m_emp_array = NULL;
+	// 文件不存在
+	if (!ifs.is_open())
+	{
+		cout << "文件不存在" << endl;
+		// 初始化属性
+		this->m_emp_num = 0;
+		this->m_emp_array = NULL;
+		this->is_empty = true;
+		ifs.close();
+		return;
+	}
+
+	// 文件存在，数据为空
+	char ch;
+	ifs >> ch;
+	if (ifs.eof())
+	{
+		cout << "文件为空" << endl;
+		this->m_emp_num = 0;
+		this->m_emp_array = NULL;
+		this->is_empty = true;
+		ifs.close();
+		return;
+	}
+
+	// 文件存在，要继续添加职工
+	int num = this->get_emp_num();
+	cout << "职工数量为: " << num << endl;
+	this->m_emp_num = num;
+	this->is_empty = false;
+
 }
 
 void WorkerManager::show_menu()
@@ -60,7 +89,7 @@ void WorkerManager::add_person()
 		{
 			int emp_id;	// 员工编号
 			string emp_name; // 员工姓名
-			int emp_dept_id;  // 员工部门编号
+			int emp_dept_id = 0;  // 员工部门编号
 
 			cout << "请输入第" << i + 1 << "个新职工编号: ";
 			cin >> emp_id;
@@ -79,8 +108,10 @@ void WorkerManager::add_person()
 			{
 			case(1):
 				worker = new Employee(emp_id, emp_name, 1);
+				break;
 			case(2):
 				worker = new Manager(emp_id, emp_name, 2);
+				break;
 			case(3):
 				worker = new Boss(emp_id, emp_name, 3);
 				break;
@@ -100,13 +131,21 @@ void WorkerManager::add_person()
 		// 更新职工人数
 		this->m_emp_num = new_size;
 
-		cout << "成功添加" << new_size << "名新职工!" << endl;
+		// 更新文件为空标志位
+		this->is_empty = false;
+
+		this->save_file();
+
+		cout << "成功添加并保存" << new_size << "名新职工!" << endl;
 
 	}
 	else
 	{
 		cout << "应大于或等于零" << endl;
 	}
+
+	system("pause");
+	system("cls");
 }
 
 void WorkerManager::save_file()
@@ -121,6 +160,32 @@ void WorkerManager::save_file()
 			<< endl;
 	}
 	ofs.close();
+}
+
+int WorkerManager::get_emp_num()
+{
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);		// 打开文件，读
+	int count = 0;
+
+	string line;
+	while (getline(ifs, line))
+	{
+		// cout << line << endl;
+		count += 1;
+	}
+
+	return count;
+}
+
+void WorkerManager::show_person()
+{
+	for (int i = 0; i < this->m_emp_num; i++)
+	{
+		this->m_emp_array[i]->show_info();
+	}
+	system("pause");
+	system("cls");
 }
 
 WorkerManager::~WorkerManager()

@@ -69,6 +69,7 @@ int main()
 			wm.add_person();
 			break;
 		case (2):    // ÏÔÊ¾
+			wm.show_person();
 			break;
 		case (3):    // É¾³ıÖ°¹¤
 			break;
