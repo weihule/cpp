@@ -40,6 +40,28 @@ void read_file()
 	ifs.close();
 }
 
+void test01()
+{
+	int a = 10;
+	int b = 20;
+	const int* p = &a;	// const修饰指针, 常量指针(指针的指向可以变，但是指针指向的值不可以变)
+	// *p = 20; 这就是错误的(=左侧必须是可修改的左值)
+	p = &b;
+	 
+	int* const p1 = &a;		// 指针常量(指针的指向不可以变, 但是指针指向的值可以变)
+	// p1 = &b;  错误的
+	*p1 = 20;
+
+	int arr[] = { 1, 2, 3, 4, 5, 6 };
+	int* arr_p = arr;
+	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+	{
+		cout << *arr_p << endl;
+		arr_p++;
+	}
+
+}
+
 
 int main()
 {

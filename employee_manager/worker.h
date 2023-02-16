@@ -16,3 +16,5 @@ public:
 	string m_name;      // 姓名
 	int m_dept_id;      // 所在部门名称编号
 };
+
+

@@ -36,7 +36,6 @@ WorkerManager::WorkerManager()
 	cout << "职工数量为: " << num << endl;
 	this->m_emp_num = num;
 	this->is_empty = false;
-
 }
 
 void WorkerManager::show_menu()
@@ -174,6 +173,8 @@ int WorkerManager::get_emp_num()
 		// cout << line << endl;
 		count += 1;
 	}
+
+	ifs.close();
 
 	return count;
 }
