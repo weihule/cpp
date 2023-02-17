@@ -2,6 +2,7 @@
 */.idea/
 */*/.idea/
 .vs/
+.tmp.driveupload/
 */Debug/
 */*.exe
 */*.obj
