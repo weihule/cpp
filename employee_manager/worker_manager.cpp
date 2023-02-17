@@ -69,10 +69,7 @@ void WorkerManager::add_person()
 	if (add_num > 0)
 	{
 		// 开辟新空间
-		cout << "--------" << endl;
-		cout << typeid(this->m_emp_num).name() << sizeof(this->m_emp_num) << endl;
-		cout << typeid(add_num).name() << sizeof(add_num) << endl;
-		Worker** new_sapce = new Worker * [this->m_emp_num + add_num];
+		Worker** new_sapce = new Worker * [add_num + this->m_emp_num];
 
 		// 计算添加新空间的大小
 		int new_size = this->m_emp_num + add_num;
