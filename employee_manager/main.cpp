@@ -59,9 +59,25 @@ int main()
 
 void test()
 {
-	int a = 10;
-	float b = 20;
-	cout << typeid(a).name() << endl;
-	cout << typeid(b).name() << endl;
+	int select;
+	cout << "请输入：";
+	cout << endl;
+
+	string name;
+	switch (select)
+	{
+	case 1:
+		cout << "case1" << endl;
+		break;
+	case 2:
+		cout << "请输入姓名：";
+		cin >> name;
+		cout << "";
+		break;
+	default:
+		cout << "暂无此功能" << endl;
+		system("pause");
+		return;
+	}
 }
 
