@@ -50,8 +50,8 @@ void run()
 
 int main()
 {
-	run();
-	// test();
+	/*run();*/
+	test();
 	
 	return 0;
 	system("pause");
@@ -59,25 +59,20 @@ int main()
 
 void test()
 {
-	int select;
-	cout << "请输入：";
-	cout << endl;
+	string str = "2020225057	卫虎乐	合伙人";
+	vector<string> elems;
+	elems = string_split(str, '\t');
+	cout << "length = " << elems.size() << endl;
+	int m_id;
+	string m_name;
+	string m_dept_id;
+	istringstream ss(elems[0]);
+	ss >> m_id;
+	cout << m_id << typeid(m_id).name() << endl;
 
-	string name;
-	switch (select)
-	{
-	case 1:
-		cout << "case1" << endl;
-		break;
-	case 2:
-		cout << "请输入姓名：";
-		cin >> name;
-		cout << "";
-		break;
-	default:
-		cout << "暂无此功能" << endl;
-		system("pause");
-		return;
-	}
+	//for (int i = 0; i < elems.size(); i++)
+	//{
+	//	cout << elems[i] << typeid(elems[i]).name() << endl;
+	//}
 }
 

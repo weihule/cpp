@@ -198,9 +198,23 @@ void WorkerManager::init_emp()
 
 void WorkerManager::show_person()
 {
-	for (int i = 0; i < this->m_emp_num; i++)
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);	// 读
+	string line;
+	char ch;
+	if (!ifs.is_open())
 	{
-		this->m_emp_array[i]->show_info();
+		cout << "文件打开失败" << endl;
+		return;
+	}
+	if (this->is_empty)
+	{
+		cout << "文件为空" << endl;
+		return;
+	}
+	while (getline(ifs, line))
+	{
+		cout << line << endl;
 	}
 	system("pause");
 	system("cls");
@@ -213,4 +227,16 @@ WorkerManager::~WorkerManager()
 		delete[] this->m_emp_array;
 		this->m_emp_array = NULL;
 	}
+}
+
+vector<string> string_split(const string& str, char delim) {
+	stringstream ss(str);
+	string item;
+	vector<string> elems;
+	while (getline(ss, item, delim)) {
+		if (!item.empty()) {
+			elems.push_back(item);
+		}
+	}
+	return elems;
 }

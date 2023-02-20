@@ -18,7 +18,6 @@ int run()
         cout << "请输入选项:";
         cin >> select;
 
-        string name;
         switch(select) {
             case (1):       // 添加联系人
                 add_person(&abs);

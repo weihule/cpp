@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <sstream>
 
 #include "worker.h"
 
@@ -36,3 +38,7 @@ public:
 
 	~WorkerManager();
 };
+
+// 实现string字符串的按指定符号分割
+vector<string> string_split(const string& str, char delim);
+
