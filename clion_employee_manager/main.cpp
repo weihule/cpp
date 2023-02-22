@@ -2,7 +2,11 @@
 #include <string>
 #include <fstream>
 
+#include "worker_manager.h"
+
 using namespace std;
+
+void test();
 
 void run()
 {
@@ -10,42 +14,57 @@ void run()
     int choice = 0;
     while (true)
     {
-        wm.show_menu();  // å±•ç¤ºèœå•
-        cout << "è¯·è¾“å…¥é€‰é¡¹: ";
+        wm.show_menu();  // Õ¹Ê¾²Ëµ¥
+        cout << "ÇëÊäÈëÑ¡Ïî: ";
         cin >> choice;
 
         switch (choice)
         {
-            case (0):    // é€€å‡ºç³»ç»Ÿ
-                wm.exit_system();
-                break;
-            case (1):    // æ·»åŠ 
+            case (0):    // ÍË³öÏµÍ³
+                cout << "»¶Ó­ÏÂ´ÎÊ¹ÓÃ" << endl;
+                system("pause");
+                exit(0);
+            case (1):    // Ìí¼Ó
                 wm.add_person();
                 break;
-            case (2):    // æ˜¾ç¤º
+            case (2):    // ÏÔÊ¾
                 wm.show_person();
                 break;
-            case (3):    // åˆ é™¤èŒå·¥
+            case (3):    // É¾³ıÖ°¹¤
                 break;
-            case (4):    // ä¿®æ”¹èŒå·¥
+            case (4):    // ĞŞ¸ÄÖ°¹¤
                 break;
-            case (5):    // æŸ¥æ‰¾èŒå·¥
+            case (5):    // ²éÕÒÖ°¹¤
                 break;
-            case (6):    // æ’åºèŒå·¥
+            case (6):    // ÅÅĞòÖ°¹¤
                 break;
-            case (7):    // æ¸…ç©ºæ–‡ä»¶
+            case (7):    // Çå¿ÕÎÄ¼ş
                 break;
             default:
-                cout << "æš‚æ— æ­¤åŠŸèƒ½ï¼" << endl;
+                cout << "ÔİÎŞ´Ë¹¦ÄÜ£¡" << endl;
                 system("pause");
-                system("cls");   // æ¸…å±
+                system("cls");   // ÇåÆÁ
                 break;
         }
     }
 }
 
 int main() {
+    run();
+//    test();
 
     system("pause");
     return 0;
+}
+
+void test()
+{
+    string arr1 = "132456\tweihu\twei";
+    vector<string> elems = string_split(arr1, '\t');
+    cout << elems.size() << endl;
+    cout << elems[0] << endl;
+    int id = 0;
+    istringstream ss(elems[0]);
+    ss >> id;
+    cout << "id = " << id << endl;
 }

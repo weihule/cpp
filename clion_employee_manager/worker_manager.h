@@ -8,10 +8,11 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <sstream>
 
 #include "worker.h"
 
-#define FILENAME "emp.txt"
+#define FILENAME "employee.txt"
 
 using namespace std;
 
@@ -27,8 +28,6 @@ public:
     bool is_empty = true;	// 判断文件是否为空的属性
 
     void show_menu();	 // 展示菜单
-
-    void exit_system();  // 退出系统
 
     void add_person();	// 添加职工
 

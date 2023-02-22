@@ -3,7 +3,7 @@
 using namespace std;
 
 
-// æ™®é€šå‘˜å·¥
+// ÆÕÍ¨Ô±¹¤
 Employee::Employee(int id, string name, int dept_id)
 {
     this->m_id = id;
@@ -13,20 +13,20 @@ Employee::Employee(int id, string name, int dept_id)
 
 void Employee::show_info()
 {
-    cout << "èŒå·¥ç¼–å·: " << setw(10) << left << this->m_id << "\t";
-    cout << "\tèŒå·¥å§“å: " << this->m_name << "\t";
-    cout << "\tå²—ä½åç§°: " << this->get_dept_name() << "\t";
-    cout << "\tå²—ä½èŒè´£: å¼€å‘ä¸šåŠ¡,åœ¨ä¸€çº¿å·¥ä½œ" << endl;
+    cout << "Ö°¹¤±àºÅ: " << setw(10) << left << this->m_id << "\t";
+    cout << "Ö°¹¤ÐÕÃû: " << this->m_name << "\t";
+    cout << "¸ÚÎ»Ãû³Æ: " << this->get_dept_name() << "\t";
+    cout << "¸ÚÎ»Ö°Ôð: ¿ª·¢ÒµÎñ,ÔÚÒ»Ïß¹¤×÷" << endl;
 }
 
 string Employee::get_dept_name()
 {
-    string str = "å‘˜å·¥";
+    string str = "»ù²ãÔ±¹¤";
     return str;
 }
 
 
-// ç»ç†
+// ¾­Àí
 Manager::Manager(int id, string name, int dept_id)
 {
     this->m_id = id;
@@ -36,20 +36,20 @@ Manager::Manager(int id, string name, int dept_id)
 
 void Manager::show_info()
 {
-    cout << "èŒå·¥ç¼–å·: " << setw(10) << left << this->m_id << "\t";
-    cout << "\tèŒå·¥å§“å: " << this->m_name << "\t";
-    cout << "\tå²—ä½åç§°: " << this->get_dept_name() << "\t";
-    cout << "\tå²—ä½èŒè´£: è´Ÿè´£äº†è§£å®¢æˆ·éœ€æ±‚å¹¶å®‰æŽ’å…¬å¸å‘˜å·¥çš„å…·ä½“å·¥ä½œ" << endl;
+    cout << "Ö°¹¤±àºÅ: " << setw(10) << left << this->m_id << "\t";
+    cout << "Ö°¹¤ÐÕÃû: " << this->m_name << "\t";
+    cout << "¸ÚÎ»Ãû³Æ: " << this->get_dept_name() << "\t";
+    cout << "¸ÚÎ»Ö°Ôð: ¸ºÔðÁË½â¿Í»§ÐèÇó²¢°²ÅÅ¹«Ë¾Ô±¹¤µÄ¾ßÌå¹¤×÷" << endl;
 }
 
 string Manager::get_dept_name()
 {
-    string str = "ç»ç†";
+    string str = "¾­Àí";
     return str;
 }
 
 
-// åˆä¼™äºº
+// ºÏ»ïÈË
 Partner::Partner(int id, string name, int dept_id)
 {
     this->m_id = id;
@@ -59,15 +59,15 @@ Partner::Partner(int id, string name, int dept_id)
 
 void Partner::show_info()
 {
-    cout << "èŒå·¥ç¼–å·: " << setw(10) << left << this->m_id << "\t";
-    cout << "\tèŒå·¥å§“å: " << this->m_name << "\t";
-    cout << "\tå²—ä½åç§°: " << this->get_dept_name() << "\t";
-    cout << "\tå²—ä½èŒè´£: ç»Ÿç­¹ç®¡ç†å…¬å¸" << endl;
+    cout << "Ö°¹¤±àºÅ: " << setw(5) << left << this->m_id << "\t";
+    cout << "Ö°¹¤ÐÕÃû: " << this->m_name << "\t";
+    cout << "¸ÚÎ»Ãû³Æ: " << this->get_dept_name() << "\t";
+    cout << "¸ÚÎ»Ö°Ôð: Í³³ï¹ÜÀí¹«Ë¾" << endl;
 }
 
 string Partner::get_dept_name()
 {
-    string str = "åˆä¼™äºº";
+    string str = "ºÏ»ïÈË";
     return str;
 }
 
