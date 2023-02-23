@@ -137,6 +137,30 @@ void WorkerManager::add_person()
     system("cls");
 }
 
+void WorkerManager::del_person()
+{
+    int m_id;
+    cout << "请输入要删除职工编号:";
+    cin >> m_id;
+    int idx = this->is_exist_person(m_id);
+    if (idx == -1)
+    {
+        cout << "查无此人" << endl;
+        return;
+    }
+    else
+    {
+        for (int i = idx; i < this->m_emp_num - 1 - 1; i++)
+        {
+            this->m_emp_array[i] = this->m_emp_array[i + 1];
+        }
+        this->m_emp_num--;
+        cout << "编号为" << m_id << "的职工信息已删除" << endl;
+    }
+    system("pause");
+    system("cls");
+}
+
 void WorkerManager::save_file() {
     ofstream ofs;
     ofs.open(FILENAME, ios::out);
@@ -167,7 +191,6 @@ int WorkerManager::get_emp_num()
         // 如果文件存在但为空，返回0
         if (line.empty())
         {
-//            cout << "count = " << count << endl;
             return count;
         }
         count += 1;
@@ -245,6 +268,21 @@ void WorkerManager::init_emp()
     }
 
     ifs.close();
+}
+
+int WorkerManager::is_exist_person(int m_id)
+{
+    int idx = -1;
+    for (int i = 0; i < this->m_emp_num; i++)
+    {
+        if(this->m_emp_array[i]->m_id == m_id)
+        {
+            idx = i;
+
+            break;
+        }
+    }
+    return idx;
 }
 
 WorkerManager::~WorkerManager() {

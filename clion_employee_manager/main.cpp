@@ -31,6 +31,7 @@ void run()
                 wm.show_person();
                 break;
             case (3):    // 删除职工
+                wm.del_person();
                 break;
             case (4):    // 修改职工
                 break;

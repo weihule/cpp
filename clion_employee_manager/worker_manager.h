@@ -31,6 +31,8 @@ public:
 
     void add_person();	// 添加职工
 
+    void del_person();  // 删除职工
+
     void save_file();    // 保存文件
 
     int get_emp_num();   // 获取当前通讯录中人员数量
@@ -38,6 +40,8 @@ public:
     void init_emp();	// 初始化通讯录数组
 
     void show_person();		// 显示通讯录
+
+    int is_exist_person(int m_id);  // 职工是否存在
 
     ~WorkerManager();
 };
