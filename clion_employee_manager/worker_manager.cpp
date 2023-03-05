@@ -139,23 +139,190 @@ void WorkerManager::add_person()
 
 void WorkerManager::del_person()
 {
-    int m_id;
-    cout << "请输入要删除职工编号:";
-    cin >> m_id;
-    int idx = this->is_exist_person(m_id);
-    if (idx == -1)
+    if (this->m_emp_num == -1)
     {
-        cout << "查无此人" << endl;
+        cout << "文件不存在" << endl;
+    }
+    else if (this->m_emp_num == 0)
+    {
+        cout << "文件存在但为空" << endl;
+    }
+    else
+    {
+        int m_id;
+        cout << "请输入要删除职工编号:";
+        cin >> m_id;
+        int idx = this->is_exist_person(m_id);
+        if (idx == -1)
+        {
+            cout << "查无此人" << endl;
+        }
+        else
+        {
+            for (int i = idx; i < this->m_emp_num - 1 - 1; i++)
+            {
+                this->m_emp_array[i] = this->m_emp_array[i + 1];
+            }
+            this->m_emp_num--;
+            this->save_file();
+            cout << "编号为" << m_id << "的职工信息已删除" << endl;
+        }
+    }
+    system("pause");
+    system("cls");
+}
+
+void WorkerManager::modify_person()
+{
+    if (this->m_emp_num == -1)
+    {
+        cout << "文件不存在" << endl;
+    }
+    else if (this->m_emp_num == 0)
+    {
+        cout << "文件存在但为空" << endl;
+    }
+    else
+    {
+        int m_id;
+        cout << "请输入要修改的职工编号:";
+        cin >> m_id;
+        int idx = this->is_exist_person(m_id);
+        if (idx == -1)
+        {
+            cout << "没有此人信息" << endl;
+        }
+        else
+        {
+            cout << "查询到的原信息如下:" << endl;
+            this->m_emp_array[idx]->show_info();
+
+            delete this->m_emp_array[idx];
+
+            int new_id;
+            string new_name;
+            int new_dept_id;
+            cout << "请输入职工编号: ";
+            cin >> new_id;
+
+            cout << "请输入职工姓名: ";
+            cin >> new_name;
+
+            while(true)
+            {
+                cout << "请选择该职工岗位(1-普通职工、2-经理、3-老板): " << endl;
+                cin >> new_dept_id;
+                if (new_dept_id == 1 || new_dept_id == 2 || new_dept_id == 3)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "您输入的职位信息有误，请重新输入" << endl;
+                }
+            }
+            Worker* w = nullptr;
+            switch(new_dept_id)
+            {
+                case 1:
+                    w = new Employee(new_id, new_name, 1);
+                    break;
+                case 2:
+                    w = new Manager(new_id, new_name, 2);
+                    break;
+                case 3:
+                    w = new Partner(new_id, new_name, 3);
+                    break;
+                default:
+                    break;
+            }
+            // 将创建的w指针保存到指针数组中
+            this->m_emp_array[idx] = w;
+            this->save_file();
+            cout << "编号为" << m_id << "的职工信息已修改" << endl;
+        }
+    }
+    system("pause");
+    system("cls");
+}
+
+void WorkerManager::find_person()
+{
+    if (this->m_emp_num == -1)
+    {
+        cout << "文件不存在" << endl;
+    }
+    else if (this->m_emp_num == 0)
+    {
+        cout << "文件存在但为空" << endl;
+    }
+    else
+    {
+        int m_id;
+        cout << "请输入要查新的职工编号:";
+        cin >> m_id;
+        int idx = this->is_exist_person(m_id);
+        if (idx == -1)
+        {
+            cout << "没有此人信息" << endl;
+        }
+        else
+        {
+            cout << "查询到的原信息如下:" << endl;
+            this->m_emp_array[idx]->show_info();
+        }
+    }
+    system("pause");
+    system("cls");
+}
+
+void WorkerManager::clean_file()
+{
+    if (this->m_emp_num == -1)
+    {
+        cout << "文件不存在" << endl;
+        return;
+    }
+    else if (this->m_emp_num == 0)
+    {
+        cout << "文件存在, 已经清空." << endl;
         return;
     }
     else
     {
-        for (int i = idx; i < this->m_emp_num - 1 - 1; i++)
+        // 清空文件
+        ofstream ofs(FILENAME, ios::trunc);  // 删除文件后重重新创建
+        while(true)
         {
-            this->m_emp_array[i] = this->m_emp_array[i + 1];
+            int select;
+            cout << "执行清空通讯录操作，确定清空请按1，返回上一级菜单请按0" << endl;
+            cin >> select;
+
+            if (select != 0 && select != 1)
+            {
+                cout << "输入有误，请重新输入" << endl;
+            }
+            else if(select == 0)
+            {
+                return;
+            }
+            else
+            {
+                for(int i = 0; i < this->m_emp_num; i++)
+                {
+                    // 删除堆区的每个职工对象
+                    if(this->m_emp_array[i] != nullptr)
+                    {
+                        delete this->m_emp_array[i];
+                    }
+                }
+
+                // 删除堆区数组指针
+                delete[] this->m_emp_array;
+                this->m_emp_num = 0;
+                cout << "清空成功" << endl;
+            }
         }
-        this->m_emp_num--;
-        cout << "编号为" << m_id << "的职工信息已删除" << endl;
     }
     system("pause");
     system("cls");
@@ -207,14 +374,12 @@ void WorkerManager::show_person()
     if (this->m_emp_num == -1)
     {
         cout << "文件不存在" << endl;
-        this->m_emp_num = 0;
-        return;
+        this->m_emp_num = -1;
     }
     else if (this->m_emp_num == 0)
     {
         cout << "文件存在但为空" << endl;
         this->m_emp_num = 0;
-        return;
     }
     else
     {
@@ -288,8 +453,14 @@ int WorkerManager::is_exist_person(int m_id)
 WorkerManager::~WorkerManager() {
     if (this->m_emp_array != nullptr)
     {
+        for (int i = 0; i < this->m_emp_num; i++)
+        {
+            if(this->m_emp_array[i] != nullptr)
+            {
+                delete this->m_emp_array[i];
+            }
+        }
         delete[] this->m_emp_array;
-        this->m_emp_array = nullptr;
     }
 }
 

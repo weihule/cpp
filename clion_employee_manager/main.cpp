@@ -34,12 +34,18 @@ void run()
                 wm.del_person();
                 break;
             case (4):    // 修改职工
+                wm.modify_person();
                 break;
             case (5):    // 查找职工
+                wm.find_person();
                 break;
             case (6):    // 排序职工
+                cout << "暂未此功能" << endl;
+                system("pause");
+                system("cls");
                 break;
             case (7):    // 清空文件
+                wm.clean_file();
                 break;
             default:
                 cout << "暂无此功能！" << endl;

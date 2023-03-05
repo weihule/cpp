@@ -18,6 +18,8 @@ public:
 
     virtual void show_info() = 0;    //显示职工信息
     virtual string get_dept_name() = 0;  // 获取岗位信息
+
+//    virtual ~Worker();
 };
 
 

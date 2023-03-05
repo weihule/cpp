@@ -33,6 +33,12 @@ public:
 
     void del_person();  // 删除职工
 
+    void modify_person();   // 修改职工
+
+    void find_person();     // 查找职工
+
+    void clean_file();     // 清空文件
+
     void save_file();    // 保存文件
 
     int get_emp_num();   // 获取当前通讯录中人员数量
