@@ -51,7 +51,8 @@ void run()
 int main()
 {
 	/*run();*/
-	test();
+	/*test();*/
+	cout << "Hello World" << endl;
 	
 	return 0;
 	system("pause");

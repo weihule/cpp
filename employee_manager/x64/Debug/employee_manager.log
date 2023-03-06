@@ -1,2 +1,8 @@
-﻿  main.cpp
+﻿  employee.cpp
+  main.cpp
+  worker_manager.cpp
+D:\workspace\c_code\employee_manager\worker_manager.cpp(188,6): warning C4101: “id”: 未引用的局部变量
+D:\workspace\c_code\employee_manager\worker_manager.cpp(190,6): warning C4101: “dept_id”: 未引用的局部变量
+D:\workspace\c_code\employee_manager\worker_manager.cpp(204,7): warning C4101: “ch”: 未引用的局部变量
+  正在生成代码...
   employee_manager.vcxproj -> D:\workspace\c_code\employee_manager\x64\Debug\employee_manager.exe
