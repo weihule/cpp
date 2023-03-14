@@ -16,14 +16,16 @@ using namespace std;
 class PersonLast
 {
 public:
-    PersonLast(string name, float score)
+    PersonLast(string name, int age, int height)
     {
         this->m_name = name;
-        this->m_score = score;
+        this->m_age = age;
+        this->m_height = height;
     }
 
     string m_name;
-    float m_score;
+    int m_age;
+    int m_height;
 };
 
 #endif //CLION_STL_STUDY_PERSON_H
