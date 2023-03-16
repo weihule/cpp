@@ -7,7 +7,7 @@
 #include <list>
 #include <set>
 #include <algorithm>
-#include <cxxabi.h>
+#include <random>
 
 #include "vector_study.h"
 #include "deque_study.h"
@@ -17,7 +17,7 @@
 using namespace std;
 
 #define CEHUA 0
-#define MIESHU 1
+#define MEISHU 1
 #define YANFA 2
 
 
@@ -392,7 +392,7 @@ void create_worker(vector<Worker>& v)
     for (int i=0; i < 10; i++)
     {
         Worker worker;
-        worker.m_name = "employee";
+        worker.m_name = "employee-";
         worker.m_name += name_seed[i];
 
         worker.m_salary = rand()%10001 + 8000;
@@ -414,16 +414,52 @@ void set_group(vector<Worker>& v, multimap<int, Worker>& m)
     }
 }
 
+void show_all(multimap<int, Worker>& m)
+{
+    auto it = m.begin();
+    while(it != m.end())
+    {
+        cout << "dept_id: " << (*it).first;
+        cout << "\tname: " << (*it).second.m_name;
+        cout << "\tsalary: " << (*it).second.m_salary << endl;
+        it++;
+    }
+}
+
 void show_by_group(multimap<int, Worker>& m)
 {
     cout << "策划部门: " << endl;
-    auto pos = m.find(CEHUA);
+    auto pos = m.find(CEHUA);   // 返回起始位置
     int count = m.count(CEHUA);
     int index = 0;
-//    while(pos != m.end())
-//    {
-//
-//    }
+    while(pos != m.end() && index < count)
+    {
+        cout << "姓名: " << (*pos).second.m_name << "\t工资: " << (*pos).second.m_salary << endl;
+        pos++;
+        index++;
+    }
+
+    cout << "美术部门: " << endl;
+    auto pos2 = m.find(MEISHU);   // 返回起始位置
+    int count2 = m.count(CEHUA);
+    int index2 = 0;
+    while(pos2 != m.end() && index2 < count2)
+    {
+        cout << "姓名: " << (*pos2).second.m_name << "\t工资: " << (*pos2).second.m_salary << endl;
+        pos2++;
+        index2++;
+    }
+
+    cout << "研发部门: " << endl;
+    auto pos3 = m.find(YANFA);   // 返回起始位置
+    int count3 = m.count(CEHUA);
+    int index3 = 0;
+    while(pos3 != m.end() && index3 < count3)
+    {
+        cout << "姓名: " << (*pos3).second.m_name << "\t工资: " << (*pos3).second.m_salary << endl;
+        pos3++;
+        index3++;
+    }
 }
 
 void stl_test2()
@@ -442,12 +478,89 @@ void stl_test2()
 //        cout << (*it).m_name << "\t" << (*it).m_salary << endl;
 //        it++;
 //    }
-
+    show_all(m);
+    cout << "---分组展示---" << endl;
     show_by_group(m);
 }
 
+class MyAdd
+{
+public:
+    int operator()(int v1, int v2)
+    {
+        return v1 + v2;
+    }
+};
+
+// 函数对象在使用的时候，可以像普通函数那样调用，可以有参数，可以有返回值
+void test001()
+{
+    MyAdd my_add;
+    cout << (my_add(10, 10)) << endl;
+}
+
+// 函数对象超出普通函数的概念，函数对象可以有自己的状态
+class MyPrint
+{
+public:
+    void operator()(string s)
+    {
+        cout << s << endl;
+    }
+};
+
+void test002()
+{
+    MyPrint mp;
+    mp("Hello");
+    mp("Hello");
+    mp("Hello");
+    mp("Hello");
+}
+
+// 使用函数对象，变降序
+class MyCompare{
+public:
+    bool operator()(int v1, int v2)
+    {
+        return v1 > v2;
+    }
+};
+
+void test0001()
+{
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(9);
+    v.push_back(11);
+    v.push_back(0);
+    sort(v.begin(), v.end());
+    for(auto it = v.begin(); it != v.end(); it++)
+    {
+        cout << (*it) << "\t";
+    }
+    cout << endl;
+    sort(v.begin(), v.end(), MyCompare());
+    for(auto it = v.begin(); it != v.end(); it++)
+    {
+        cout << (*it) << "\t";
+    }
+    cout << endl;
+}
+
+void func_test01()
+{
+    // 一元仿函数，取反仿函数
+    negate<int> n;
+    cout << n(50) << endl;
+
+    // 二元仿函数，加法（默认是两个同类型相加, 所以<>里只写一个）
+    plus<int> p;
+    cout << p(10, 20) << endl;
+}
+
 int main() {
-    stl_test2();
+    func_test01();
     system("pause");
     return 0;
 }
