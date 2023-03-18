@@ -8,6 +8,8 @@
 #include <set>
 #include <algorithm>
 #include <random>
+#include <functional>
+#include <numeric>
 
 #include "vector_study.h"
 #include "deque_study.h"
@@ -559,8 +561,120 @@ void func_test01()
     cout << p(10, 20) << endl;
 }
 
+class Compare2
+{
+public:
+    bool operator()(int v1, int v2)
+    {
+        return v1 > v2;
+    }
+};
+
+void func_test02()
+{
+    // 关系仿函数，大于
+    vector<int> v;
+    v.push_back(11);
+    v.push_back(0);
+    v.push_back(9);
+    v.push_back(5);
+    v.push_back(2);
+    auto it = v.begin();
+    // 降序
+    sort(v.begin(), v.end(), greater<int>());
+    while(it != v.end())
+    {
+        cout << (*it) << "\t";
+        it++;
+    }
+    cout << endl;
+}
+
+void print1(int v)
+{
+    cout << v << "\t";
+}
+
+class print2
+{
+public:
+    void operator()(int v)
+    {
+        cout << v << "\t";
+    }
+};
+
+class Transform
+{
+public:
+    int operator()(int v)
+    {
+        return v + 11;
+    }
+};
+
+class GreaterNum
+{
+public:
+    bool operator()(int v)
+    {
+        return v > 10;
+    }
+};
+
+class MyPrintInt
+{
+public:
+    void operator()(int i)
+    {
+        cout << i << endl;
+    }
+};
+
+// 查找内置数据类型
+void test101()
+{
+    vector<int> v;
+    v.resize(10);
+
+    fill(v.begin(), v.end(), 100);
+    for_each(v.begin(), v.end(), MyPrintInt());
+}
+
+class GreaterPersonNum
+{
+public:
+    bool operator()(PersonLast& p)
+    {
+        return p.m_age > 25;
+    }
+};
+
+// 查找自定义数据类型
+void test102()
+{
+    vector<PersonLast> v;
+    PersonLast p1("张三", 25, 178);
+    PersonLast p2("李四", 20, 172);
+    PersonLast p3("王五", 19, 181);
+    v.push_back(p1);
+    v.push_back(p2);
+    v.push_back(p3);
+
+    // 找年龄大于20
+    auto it = find_if(v.begin(), v.end(), GreaterPersonNum());
+    if(it == v.end())
+    {
+        cout << "未找到" << endl;
+    }
+    else
+    {
+        cout << "找到" << endl;
+    }
+}
+
 int main() {
-    func_test01();
+    test101();
     system("pause");
     return 0;
 }

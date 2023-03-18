@@ -23,6 +23,19 @@ public:
         this->m_height = height;
     }
 
+    // 重载 ==
+    bool operator==(const PersonLast& p) const
+    {
+        if (this->m_name == p.m_name && this->m_age == p.m_age && this->m_height == p.m_height)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     string m_name;
     int m_age;
     int m_height;
