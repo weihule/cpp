@@ -53,6 +53,39 @@ void SpeechManager::create_speaker()
     }
 }
 
+void SpeechManager::start_speech()
+{
+    this->speech_draw();
+}
+
+void SpeechManager::speech_draw()
+{
+    cout << "第 " << this->m_index << "轮选手正在抽签" << endl;
+    cout << "-----------------------" << endl;
+    cout << "抽签后比赛顺序如下：" << endl;
+    srand((unsigned int)time(nullptr));
+    if (this->m_index == 1)
+    {
+        random_shuffle(this->v1.begin(), this->v1.end());
+        for(auto it = this->v1.begin(); it < v1.end(); it++)
+        {
+            cout << (*it) << " ";
+        }
+        cout << endl;
+    }
+    else
+    {
+        random_shuffle(this->v2.begin(), this->v2.end());
+        for(auto it = this->v2.begin(); it < v2.end(); it++)
+        {
+            cout << (*it) << " ";
+        }
+        cout << endl;
+    }
+    cout << "-----------------------" << endl;
+    system("pause");
+}
+
 SpeechManager::~SpeechManager()
 {
 

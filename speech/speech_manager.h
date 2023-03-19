@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
+#include <random>
+#include <numeric>
 
 #include "speaker.h"
 
@@ -25,6 +28,10 @@ public:
     void init_speech();    // 初始化容器
 
     void create_speaker();  // 创建选手
+
+    void start_speech();
+
+    void speech_draw();     // 抽签
 
     vector<int> v1;    // 第一轮选手
     vector<int> v2;    // 第一轮晋级选手
