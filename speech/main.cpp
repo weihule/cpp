@@ -11,17 +11,23 @@ void print_int_v(int v)
 
 void test01()
 {
-    vector<int> v1;
-    vector<int> v2;
-    for(int i = 0; i < 10; i++)
+    map<int, map<int, string>> m1;
+    for (int i = 0; i < 3; i ++)
     {
-        v1.push_back(i);
-        v2.push_back(i+10);
+        map<int, string> temp_m;
+        temp_m[171] = "уехЩ";
+        m1.insert(make_pair(100+i, temp_m));
     }
-    vector<int> v_dst;
-    v_dst.resize(v1.size() + v2.size());
-    merge(v1.begin(), v1.end(), v2.begin(), v2.end(), v_dst.begin());
-    for_each(v1.begin(), v1.end(), print_int_v);
+    ofstream ofs("test.csv", ios::out | ios::app);
+    for(auto it = m1.begin(); it != m1.end(); it++)
+    {
+        for(auto it2 = ((*it).second).begin(); it2 != ((*it).second).end(); it2++)
+        {
+            ofs << (*it).first << ","
+                << (*it2).first << ","
+                << (*it2).second << endl;
+        }
+    }
 }
 
 void run()
@@ -62,7 +68,7 @@ void run()
 }
 
 int main() {
-    run();
+//    run();
     test01();
     return 0;
 }

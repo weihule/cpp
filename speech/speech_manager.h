@@ -5,9 +5,12 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <deque>
 #include <algorithm>
 #include <random>
+#include <functional>
 #include <numeric>
+#include <fstream>
 
 #include "speaker.h"
 
@@ -33,9 +36,19 @@ public:
 
     void speech_draw();     // 抽签
 
+    void speech_contest();  // 比赛
+
+    void show_score();
+
+    void save_record();     // 保存函数
+
+    void load_record();
+
+    map<int, map<string, float>> m_record;   // 存放往届信息
+
     vector<int> v1;    // 第一轮选手
     vector<int> v2;    // 第一轮晋级选手
-    vector<int> v3;    // 胜出前三名选后
+    vector<int> v3;    // 胜出前三名选手
 
     // 存放编号及对应选手
     map<int, Speaker> m_sp;
