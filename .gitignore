@@ -8,5 +8,8 @@
 */*.exe
 */*.obj
 */cmake-build-debug/
+
+# 不要忽略cmake-build-debug/txt_files文件夹下的内容
+!*/cmake-build-debug/txt_files/
 */x64/
 */*/x64/
