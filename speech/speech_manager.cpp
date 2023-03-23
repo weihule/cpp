@@ -10,7 +10,7 @@ SpeechManager::SpeechManager()
     this->create_speaker();
 
     // 获取往届记录
-    this->load_record();
+//    this->load_record();
 }
 
 void SpeechManager::show_menu()
@@ -215,19 +215,97 @@ void SpeechManager::load_record()
     {
         cout << "文件为空！" << endl;
         ifs.close();
+        system("pause");
+        system("cls");
         return;
     }
 
+    cout << endl;
     ifs.putback(ch);        // 把上面读取的那个字符再放回去
     string line;
-    while(getline(ifs, line))
-    {
-        cout << line << endl;
+    int idx = 0;    // 第几届
+    while(getline(ifs, line)){
+
+        vector<string> elems = string_split(line, ',');
+        int player_id = stoi(elems[0]);     // 选手编号
+        string player_name = elems[1];          // 选手姓名
+        float player_score2 = stof(elems[3]);   // 选手获胜的分数
+        map<string, float> temp;
+        temp.insert(make_pair(player_name, player_score2));
+        this->m_record.insert(make_pair(idx / 3 + 1, temp));
+        auto it = elems.begin();
+//        while(it != elems.end())
+//        {
+//            cout << (*it) << "\t";
+//            it++;
+//        }
+//        cout << endl;
+        idx++;
     }
     ifs.close();
+    for(auto it = this->m_record.begin(); it != this->m_record.end(); it++)
+    {
+        for(auto it2 = (*it).second.begin(); it2 != (*it).second.end(); it2++)
+        {
+            cout << "第 " << (*it).first << " 届\t";
+            cout << (*it2).first << "\t";
+            cout << (*it2).second << endl;
+        }
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void SpeechManager::clear_record()
+{
+    cout << "确认清空？\n1、确认\n2、返回" << endl;
+    int select = 0;
+    while(true)
+    {
+        cin >> select;
+        if(select != 1 && select != 2){
+            cout << "没有此选项,请重新输入！" << endl;
+        }
+        else if(select == 1){
+            // trunc 如果文件存在，就删除文件并重新创建
+            ofstream ofs("speech.csv", ios::trunc);
+            ofs.close();
+
+            // 初始化属性
+            this->init_speech();
+
+            // 创建选手
+            this->create_speaker();
+            cout << "清空成功" << endl;
+            break;
+        }
+        else{
+            break;
+        }
+    }
+    system("pause");
+    system("cls");
 }
 
 SpeechManager::~SpeechManager()
 {
 
 }
+
+vector<string> string_split(const string& str, char delim)
+{
+    // 把str转成输入字符流
+    stringstream ss(str);
+    string item;
+    vector<string> elems;
+    while(getline(ss, item, delim)){
+        if(!item.empty()){
+            elems.push_back(item);
+        }
+    }
+
+    return elems;
+}
+
+

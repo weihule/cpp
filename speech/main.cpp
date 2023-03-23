@@ -11,23 +11,27 @@ void print_int_v(int v)
 
 void test01()
 {
-    map<int, map<int, string>> m1;
-    for (int i = 0; i < 3; i ++)
-    {
-        map<int, string> temp_m;
-        temp_m[171] = "张三";
-        m1.insert(make_pair(100+i, temp_m));
-    }
-    ofstream ofs("test.csv", ios::out | ios::app);
-    for(auto it = m1.begin(); it != m1.end(); it++)
-    {
-        for(auto it2 = ((*it).second).begin(); it2 != ((*it).second).end(); it2++)
-        {
-            ofs << (*it).first << ","
-                << (*it2).first << ","
-                << (*it2).second << endl;
-        }
-    }
+    string name;
+    int height;
+    int age;
+
+    string s = "张三,171,25";
+    vector<string> elems = string_split(s, ',');
+    cout << elems.size() << endl;
+    name = elems[0];
+//    istringstream ss1(elems[1]);
+//    ss1 >> height;
+    height = stoi(elems[1]);
+
+    istringstream ss2(elems[2]);
+    ss2 >> age;
+
+    cout << "name: " << name << typeid(name).name() << endl;
+    cout << "height: " << height << typeid(height).name() << endl;
+    cout << "age: " << age << typeid(age).name() << endl;
+
+    string str2 = "87.123";
+    cout << stoi(str2) << endl;
 }
 
 void run()
@@ -49,11 +53,13 @@ void run()
 
         switch (choice) {
             case 1:    // 开始比赛
-            sm.start_speech();
+                sm.start_speech();
                 break;
             case 2:    // 查看记录
+                sm.load_record();
                 break;
             case 3:    // 清空记录
+                sm.clear_record();
                 break;
             case 0:    // 退出系统
                 cout << "欢迎下次使用" << endl;
@@ -68,7 +74,7 @@ void run()
 }
 
 int main() {
-//    run();
-    test01();
+    run();
+//    test01();
     return 0;
 }

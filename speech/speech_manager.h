@@ -3,6 +3,7 @@
 #define SPEECH_SPEECH_MANAGER_H
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <map>
 #include <deque>
@@ -44,7 +45,10 @@ public:
 
     void load_record();
 
-    map<int, map<string, float>> m_record;   // 存放往届信息
+    void clear_record();    // 清空记录
+
+    // 存放往届记录的容器
+    multimap<int, map<string, float>> m_record;
 
     vector<int> v1;    // 第一轮选手
     vector<int> v2;    // 第一轮晋级选手
@@ -56,5 +60,7 @@ public:
     // 比赛轮数
     int m_index;
 };
+
+vector<string> string_split(const string& , char);
 
 #endif //SPEECH_SPEECH_MANAGER_H
