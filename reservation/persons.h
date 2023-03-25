@@ -4,7 +4,11 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <vector>
+#include <sstream>
 #include "identity.h"
+#include "global_file.h"
 
 using namespace std;
 
@@ -81,5 +85,7 @@ public:
     // 清空预约记录
     void clear_file();
 };
+
+vector<string> string_split(const string&, char);
 
 #endif //RESERVATION_PERSONS_H
