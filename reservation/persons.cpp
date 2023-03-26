@@ -1,105 +1,121 @@
 
 #include "persons.h"
 
-// é»˜è®¤æ„é€ 
+#include <utility>
+
+// Ä¬ÈÏ¹¹Ôì
 Student::Student(){
 
 }
 
-// æœ‰å‚æ„é€ 
+// ÓĞ²Î¹¹Ôì
 Student::Student(int id, string name, string pwd){
 
 }
 
-// èœå•ç•Œé¢
+// ²Ëµ¥½çÃæ
 void Student::opera_menu(){
 
 }
 
-// ç”³è¯·é¢„çº¦
+// ÉêÇëÔ¤Ô¼
 void Student::apply_order(){
 
 }
 
-// æŸ¥çœ‹é¢„çº¦
+// ²é¿´Ô¤Ô¼
 void Student::show_order(){
 
 }
 
-// æŸ¥çœ‹æ‰€æœ‰é¢„çº¦
+// ²é¿´ËùÓĞÔ¤Ô¼
 void Student::show_all_order(){
 
 }
 
-// å–æ¶ˆé¢„çº¦
+// È¡ÏûÔ¤Ô¼
 void Student::cancel_order(){
 
 }
 
 
-// é»˜è®¤æ„é€ 
+// Ä¬ÈÏ¹¹Ôì
 Teacher::Teacher(){
 
 }
 
-// æœ‰å‚æ„é€ 
+// ÓĞ²Î¹¹Ôì
 Teacher::Teacher(int id, string name, string pwd){
 
 }
 
-// èœå•ç•Œé¢
+// ²Ëµ¥½çÃæ
 void Teacher::opera_menu(){
 
 }
 
-// æŸ¥çœ‹æ‰€æœ‰é¢„çº¦
+// ²é¿´ËùÓĞÔ¤Ô¼
 void Teacher::show_all_order(){
 
 }
 
-// å®¡æ ¸é¢„çº¦
+// ÉóºËÔ¤Ô¼
 void Teacher::valid_order(){
 
 }
 
 
-// é»˜è®¤æ„é€ 
+// Ä¬ÈÏ¹¹Ôì
 Manager::Manager(){
 
 }
 
-// æœ‰å‚æ„é€ 
-Manager::Manager(int id, string name, string pwd){
-
+// ÓĞ²Î¹¹Ôì
+Manager::Manager(string name, string pwd){
+    this->m_name = std::move(name);
+    this->m_pwd = std::move(pwd);
 }
 
-// èœå•ç•Œé¢
+// ²Ëµ¥½çÃæ
 void Manager::opera_menu(){
-
+    cout << "»¶Ó­¹ÜÀíÔ±£º" << this->m_name << "µÇÂ¼£¡" << endl;
+    cout << "\t\t -------------------------------\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          1. Ìí¼ÓÕËºÅ           |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          2. ²é¿´ÕËºÅ           |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          3. ²é¿´»ú·¿          |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          4. Çå¿ÕÔ¤Ô¼          |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          0. ×¢ÏúµÇÂ¼          |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t -------------------------------\n";
 }
 
-// æ·»åŠ è´¦å·
+// Ìí¼ÓÕËºÅ
 void Manager::add_person(){
 
 }
 
-// æŸ¥çœ‹è´¦å·
+// ²é¿´ÕËºÅ
 void Manager::show_person(){
 
 }
 
-// æŸ¥çœ‹æœºæˆ¿ä¿¡æ¯
+// ²é¿´»ú·¿ĞÅÏ¢
 void Manager::show_computer(){
 
 }
 
-// æ¸…ç©ºé¢„çº¦è®°å½•
+// Çå¿ÕÔ¤Ô¼¼ÇÂ¼
 void Manager::clear_file(){
 
 }
 
 vector<string> string_split(const string& str, char delim) {
-    // stringstreamå°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºè¾“å…¥æµssï¼Œç„¶åä½¿ç”¨std::getlineå‡½æ•°ä»è¾“å…¥æµä¸­é€ä¸ªè¯»å–åˆ†éš”ç¬¦åˆ†éš”çš„å­å­—ç¬¦ä¸²
+    // stringstream½«×Ö·û´®×ª»»ÎªÊäÈëÁ÷ss£¬È»ºóÊ¹ÓÃstd::getlineº¯Êı´ÓÊäÈëÁ÷ÖĞÖğ¸ö¶ÁÈ¡·Ö¸ô·û·Ö¸ôµÄ×Ó×Ö·û´®
     stringstream ss(str);
     string item;
     vector<string> elems;

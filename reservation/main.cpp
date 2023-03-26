@@ -20,8 +20,52 @@ void show_menu()
     cout << "\t\t -------------------------------\n";
 }
 
-void login_in(string file_name, int type){
-    // 父类指针
+// 管理员菜单
+// 指针指向引用指针，不用开辟新地址存储，作为别名调用
+void manager_menu(Identity* &manager){
+    while(true){
+        // 管理员菜单
+        manager->opera_menu();
+
+        // 把父类指针强转成子类指针，这样就可以调用子类特有的接口
+        auto* man = (Manager*)manager;
+
+        int select = 0;
+        cout << "请输入操作选项:";
+        cin >> select;
+
+        // 添加账号
+        if(select == 1){
+            cout << "添加账号" << endl;
+            man->add_person();
+        }
+        // 查看账号
+        else if(select == 2){
+            cout << "查看账号" << endl;
+            man->show_person();
+        }
+        // 查看机房
+        else if(select == 3){
+            cout << "查看机房" << endl;
+            man->show_computer();
+        }
+        // 清空预约
+        else if(select == 4){
+            cout << "清空预约" << endl;
+            man->clear_file();
+        }
+        else{
+            delete man;
+            cout << "注销成功" << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+    }
+}
+
+void login_in(const string& file_name, int type){
+    // 用父类指针创建子类对象
     Identity* person = nullptr;
 
     ifstream ifs(file_name, ios::in);
@@ -86,14 +130,14 @@ void login_in(string file_name, int type){
                 f_id = stoi(elems[0]);
                 f_name = elems[1];
                 f_pwd = elems[2];
-                cout << f_id << " " << f_name << " " << f_pwd << endl;
+                // cout << f_id << " " << f_name << " " << f_pwd << endl;
                 if(id == f_id && name == f_name && pwd == f_pwd){
                     cout << "教师身份验证成功!" << endl;
                     system("pause");
                     system("cls");
                     person = new Teacher(id, name, pwd);    // 堆区
 
-                    // 进入老师身份子菜单
+                    // 进入教师身份子菜单
 
                     return;
                 }
@@ -102,6 +146,24 @@ void login_in(string file_name, int type){
         }
         // 管理员身份验证
         case 3:{
+            string f_name;
+            string f_pwd;
+            string line;
+            while(getline(ifs, line)){
+                vector<string> elems = string_split(line, ',');
+                f_name = elems[0];
+                f_pwd = elems[1];
+                if(name == f_name && pwd == f_pwd){
+                    cout << "管理员身份验证成功!" << endl;
+                    system("pause");
+                    system("cls");
+                    person = new Manager(name, pwd);
+
+                    // 进入管理员子菜单
+                    manager_menu(person);
+                    return;
+                }
+            }
             break;
         }
         default:

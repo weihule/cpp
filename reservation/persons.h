@@ -12,77 +12,77 @@
 
 using namespace std;
 
-// å­¦ç”Ÿç±»
+// Ñ§ÉúÀà
 class Student: public Identity{
 public:
-    // é»˜è®¤æ„é€ 
+    // Ä¬ÈÏ¹¹Ôì
     Student();
 
-    // æœ‰å‚æ„é€ 
+    // ÓĞ²Î¹¹Ôì
     Student(int id, string name, string pwd);
 
-    // èœå•ç•Œé¢
+    // ²Ëµ¥½çÃæ
     void opera_menu() override;
 
-    // ç”³è¯·é¢„çº¦
+    // ÉêÇëÔ¤Ô¼
     void apply_order();
 
-    // æŸ¥çœ‹é¢„çº¦
+    // ²é¿´Ô¤Ô¼
     void show_order();
 
-    // æŸ¥çœ‹æ‰€æœ‰é¢„çº¦
+    // ²é¿´ËùÓĞÔ¤Ô¼
     void show_all_order();
 
-    // å–æ¶ˆé¢„çº¦
+    // È¡ÏûÔ¤Ô¼
     void cancel_order();
 
-    // å­¦ç”Ÿå­¦å·
+    // Ñ§ÉúÑ§ºÅ
     int m_id;
 };
 
 
-// è€å¸ˆç±»
+// ÀÏÊ¦Àà
 class Teacher: public Identity{
 public:
-    // é»˜è®¤æ„é€ 
+    // Ä¬ÈÏ¹¹Ôì
     Teacher();
 
-    // æœ‰å‚æ„é€ 
+    // ÓĞ²Î¹¹Ôì
     Teacher(int id, string name, string pwd);
 
-    // èœå•ç•Œé¢
+    // ²Ëµ¥½çÃæ
     void opera_menu() override;
 
-    // æŸ¥çœ‹æ‰€æœ‰é¢„çº¦
+    // ²é¿´ËùÓĞÔ¤Ô¼
     void show_all_order();
 
-    // å®¡æ ¸é¢„çº¦
+    // ÉóºËÔ¤Ô¼
     void valid_order();
 };
 
 
-// ç®¡ç†å‘˜ç±»
+// ¹ÜÀíÔ±Àà
 class Manager: public Identity{
 public:
-    // é»˜è®¤æ„é€ 
+    // Ä¬ÈÏ¹¹Ôì
     Manager();
 
-    // æœ‰å‚æ„é€ 
-    Manager(int id, string name, string pwd);
+    // ÓĞ²Î¹¹Ôì
+    Manager(string name, string pwd);
 
-    // èœå•ç•Œé¢
+    // ²Ëµ¥½çÃæ
     void opera_menu() override;
 
-    // æ·»åŠ è´¦å·
+    // Ìí¼ÓÕËºÅ
     void add_person();
 
-    // æŸ¥çœ‹è´¦å·
+    // ²é¿´ÕËºÅ
     void show_person();
 
-    // æŸ¥çœ‹æœºæˆ¿ä¿¡æ¯
+    // ²é¿´»ú·¿ĞÅÏ¢
     void show_computer();
 
-    // æ¸…ç©ºé¢„çº¦è®°å½•
+    // Çå¿ÕÔ¤Ô¼¼ÇÂ¼
     void clear_file();
 };
 
