@@ -38,6 +38,8 @@ void Student::cancel_order(){
 
 }
 
+Student::~Student() = default;
+
 
 // 默认构造
 Teacher::Teacher(){
@@ -61,6 +63,10 @@ void Teacher::show_all_order(){
 
 // 审核预约
 void Teacher::valid_order(){
+
+}
+
+Teacher::~Teacher() {
 
 }
 
@@ -111,6 +117,10 @@ void Manager::show_computer(){
 
 // 清空预约记录
 void Manager::clear_file(){
+
+}
+
+Manager::~Manager(){
 
 }
 

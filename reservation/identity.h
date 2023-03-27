@@ -15,6 +15,8 @@ public:
     string m_name;  // 用户名
     string m_pwd;   // 密码
 
+//    virtual ~Identity() = 0;
+
 };
 
 #endif //RESERVATION_IDENTITY_H

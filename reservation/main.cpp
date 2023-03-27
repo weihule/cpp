@@ -28,6 +28,7 @@ void manager_menu(Identity* &manager){
         manager->opera_menu();
 
         // 把父类指针强转成子类指针，这样就可以调用子类特有的接口
+        // TODO: 这里man是临时变量？
         auto* man = (Manager*)manager;
 
         int select = 0;
@@ -55,7 +56,9 @@ void manager_menu(Identity* &manager){
             man->clear_file();
         }
         else{
-            delete man;
+            // TODO: Identity基类要写成虚析构函数
+            // https://blog.csdn.net/SweetTool/article/details/96730279
+            delete manager;
             cout << "注销成功" << endl;
             system("pause");
             system("cls");

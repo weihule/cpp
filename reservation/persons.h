@@ -38,6 +38,9 @@ public:
 
     // 学生学号
     int m_id;
+
+    // 析构
+    ~Student();
 };
 
 
@@ -58,6 +61,8 @@ public:
 
     // 审核预约
     void valid_order();
+
+    ~Teacher();
 };
 
 
@@ -84,6 +89,8 @@ public:
 
     // 清空预约记录
     void clear_file();
+
+    ~Manager();
 };
 
 vector<string> string_split(const string&, char);
