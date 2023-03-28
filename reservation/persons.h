@@ -62,6 +62,9 @@ public:
     // 审核预约
     void valid_order();
 
+    // 教师职工号
+    int m_id;
+
     ~Teacher();
 };
 
@@ -89,6 +92,18 @@ public:
 
     // 清空预约记录
     void clear_file();
+
+    // 初始化容器
+    void init_vector();
+
+    // 检测重复
+    bool check_repeat(int id, int type);
+
+    // 学生容器
+    vector<Student> v_stu;
+
+    // 教师容器
+    vector<Teacher> v_tea;
 
     ~Manager();
 };

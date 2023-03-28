@@ -37,12 +37,10 @@ void manager_menu(Identity* &manager){
 
         // 添加账号
         if(select == 1){
-            cout << "添加账号" << endl;
             man->add_person();
         }
         // 查看账号
         else if(select == 2){
-            cout << "查看账号" << endl;
             man->show_person();
         }
         // 查看机房
@@ -67,7 +65,7 @@ void manager_menu(Identity* &manager){
     }
 }
 
-void login_in(const string& file_name, int type){
+void login_in(const string& file_name, int select){
     // 用父类指针创建子类对象
     Identity* person = nullptr;
 
@@ -84,11 +82,11 @@ void login_in(const string& file_name, int type){
     string pwd;
 
     // 判断身份
-    if(type == 1){
+    if(select == 1){
         cout << "请输入学号:";
         cin >> id;
     }
-    else if(type == 2){
+    else if(select == 2){
         cout << "请输入职工号:";
         cin >> id;
     }
@@ -97,7 +95,7 @@ void login_in(const string& file_name, int type){
     cout << "请输入密码:";
     cin >> pwd;
 
-    switch(type){
+    switch(select){
         // 学生身份验证
         case 1:{
             int f_id;
