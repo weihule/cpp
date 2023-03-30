@@ -2,6 +2,7 @@
 */.idea/
 */*/.idea/
 .vs/
+*/.vs/
 .tmp.driveupload/
 .tmp.drivedownload/
 */Debug/
@@ -9,7 +10,10 @@
 */*.obj
 */cmake-build-debug/
 
+# 不要忽略文件夹和子文件夹
+# !/**/
+
 # 不要忽略cmake-build-debug/txt_files文件夹下的内容
-!*/cmake-build-debug/txt_files/
+!speech/cmake-build-debug/
 */x64/
 */*/x64/
