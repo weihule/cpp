@@ -10,17 +10,89 @@ Student::Student(){
 
 // 有参构造
 Student::Student(int id, string name, string pwd){
+    this->m_id = id;
+    this->m_name = std::move(name);
+    this->m_pwd = std::move(pwd);
 
+    // 初始化机房信息
+    this->init_computer();
 }
 
 // 菜单界面
 void Student::opera_menu(){
-
+    cout << "欢迎：" << this->m_name << "登录！" << endl;
+    cout << "\t\t -------------------------------\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          1. 申请预约           |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          2. 查看预约           |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          3. 查看所有预约       |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          4. 取消预约           |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t|          0. 注销登录           |\n";
+    cout << "\t\t|                               |\n";
+    cout << "\t\t -------------------------------\n";
 }
 
 // 申请预约
 void Student::apply_order(){
+    cout << "机房开放时间为周一至周五" << endl;
+    cout << "**** 1.周一 ****" << endl;
+    cout << "**** 2.周二 ****" << endl;
+    cout << "**** 3.周三 ****" << endl;
+    cout << "**** 4.周四 ****" << endl;
+    cout << "**** 5.周五 ****" << endl;
 
+    int date = 0;
+    int interval = 0;
+    int room = 0;
+
+    while(true){
+        cout << "请输入申请预约时间:";
+        cin >> date;
+        if(date >= 1 && date <= 5){
+            break;
+        }
+        cout << "输入有误，请重新输入" << endl;
+    }
+
+    cout << "**** 1.上午 ****" << endl;
+    cout << "**** 2.下午 ****" << endl;
+    while(true){
+        cout << "请输入申请时间段:";
+        cin >> interval;
+        if(interval == 1 || interval == 2){
+            break;
+        }
+        cout << "输入有误，请重新输入" << endl;
+    }
+
+    cout << "1号机房容量:" << this->v_com[0].m_max_num << endl;
+    cout << "2号机房容量:" << this->v_com[1].m_max_num << endl;
+    cout << "3号机房容量:" << this->v_com[2].m_max_num << endl;
+    while(true){
+        cout << "请选择机房:";
+        cin >> room;
+        if(room == 1 || room == 2 || room == 3){
+            break;
+        }
+        cout << "输入有误，请重新输入" << endl;
+    }
+    cout << "预约成功，等待审核通过" << endl;
+
+    ofstream ofs(ORDER_FILE, ios::app);
+    ofs << "date:" << date << ",";
+    ofs << "interval:" << interval << ",";
+    ofs << "room:" << room << ",";
+    ofs << "stu_id:" << this->m_id << ",";
+    ofs << "stu_name:" << this->m_name << ",";
+    ofs << "status:" << 1 << endl;
+    ofs.close();
+
+    system("pause");
+    system("cls");
 }
 
 // 查看预约
@@ -36,6 +108,19 @@ void Student::show_all_order(){
 // 取消预约
 void Student::cancel_order(){
 
+}
+
+void Student::init_computer(){
+    ifstream ifs(COMPUTER_ROOM_FILE, ios::in);
+    string line;
+    ComputerRoom cr{};
+    while(getline(ifs, line)){
+        vector<string> elems = string_split(line, ',');
+        cr.m_com_id = stoi(elems[0]);
+        cr.m_max_num = stoi(elems[1]);
+        this->v_com.push_back(cr);
+    }
+    ifs.close();
 }
 
 Student::~Student() = default;
@@ -82,6 +167,9 @@ Manager::Manager(string name, string pwd){
     this->m_pwd = std::move(pwd);
 
     this->init_vector();
+
+    // 初始化机房信息
+    this->init_computer();
 }
 
 // 菜单界面
@@ -191,12 +279,25 @@ void Manager::show_person(){
 
 // 查看机房信息
 void Manager::show_computer(){
-
+    cout << "机房信息" << endl;
+    auto it = this->v_com.begin();
+    while(it != this->v_com.end()){
+        cout << "机房编号:" << (*it).m_com_id << "\t";
+        cout << "机房最大容量:" << (*it).m_max_num << endl;
+        it++;
+    }
+    system("pause");
+    system("cls");
 }
 
 // 清空预约记录
 void Manager::clear_file(){
+    ofstream ofs(ORDER_FILE, ios::trunc);
+    ofs.close();
 
+    cout << "清空成功" << endl;
+    system("pause");
+    system("cls");
 }
 
 void Manager::init_vector(){
@@ -260,6 +361,20 @@ bool Manager::check_repeat(int id, int select){
         }
     }
     return false;
+}
+
+void Manager::init_computer(){
+    ifstream ifs(COMPUTER_ROOM_FILE, ios::in);
+    string line;
+    ComputerRoom cr{};
+    while(getline(ifs, line)){
+        vector<string> elems = string_split(line, ',');
+        cr.m_com_id = stoi(elems[0]);
+        cr.m_max_num = stoi(elems[1]);
+        this->v_com.push_back(cr);
+    }
+    cout << "当前机房的数量为:" << this->v_com.size() << endl;
+    ifs.close();
 }
 
 Manager::~Manager(){

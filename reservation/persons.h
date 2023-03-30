@@ -7,8 +7,10 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+
 #include "identity.h"
 #include "global_file.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -36,8 +38,14 @@ public:
     // 取消预约
     void cancel_order();
 
+    // 初始化机房信息
+    void init_computer();
+
     // 学生学号
     int m_id;
+
+    // 机房容器
+    vector<ComputerRoom> v_com;
 
     // 析构
     ~Student();
@@ -96,6 +104,9 @@ public:
     // 初始化容器
     void init_vector();
 
+    // 初始化机房信息
+    void init_computer();
+
     // 检测重复
     bool check_repeat(int id, int type);
 
@@ -104,6 +115,9 @@ public:
 
     // 教师容器
     vector<Teacher> v_tea;
+
+    // 获取机房信息容器
+    vector<ComputerRoom> v_com;
 
     ~Manager();
 };

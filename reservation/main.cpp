@@ -45,18 +45,55 @@ void manager_menu(Identity* &manager){
         }
         // 查看机房
         else if(select == 3){
-            cout << "查看机房" << endl;
             man->show_computer();
         }
         // 清空预约
         else if(select == 4){
-            cout << "清空预约" << endl;
             man->clear_file();
         }
         else{
             // TODO: Identity基类要写成虚析构函数
             // https://blog.csdn.net/SweetTool/article/details/96730279
             delete manager;
+            cout << "注销成功" << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+    }
+}
+
+// 学生子菜单
+void student_menu(Identity* &student){
+    while(true) {
+        // 学生菜单
+        student->opera_menu();
+
+        // 把父类指针强转成子类指针，这样就可以调用子类特有的接口
+        auto *stu = (Student *) student;
+
+        int select = 0;
+        cout << "请输入操作选项:";
+        cin >> select;
+
+        // 申请预约
+        if(select == 1){
+            stu->apply_order();
+        }
+        // 查看预约
+        else if(select == 2){
+            stu->show_order();
+        }
+        // 查看所有预约
+        else if(select == 3){
+            stu->show_all_order();
+        }
+        // 取消预约
+        else if(select == 4){
+            stu->cancel_order();
+        }
+        else{
+            delete student;
             cout << "注销成功" << endl;
             system("pause");
             system("cls");
@@ -114,6 +151,7 @@ void login_in(const string& file_name, int select){
                     person = new Student(id, name, pwd);    // 堆区
 
                     // 进入学生身份子菜单
+                    student_menu(person);
 
                     return;
                 }
