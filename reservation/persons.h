@@ -6,11 +6,11 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <sstream>
 
 #include "identity.h"
 #include "global_file.h"
 #include "computer.h"
+#include "order_file.h"
 
 using namespace std;
 
@@ -121,7 +121,5 @@ public:
 
     ~Manager();
 };
-
-vector<string> string_split(const string&, char);
 
 #endif //RESERVATION_PERSONS_H

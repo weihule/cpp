@@ -3,4 +3,4 @@ project(reservation)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(reservation main.cpp identity.h persons.cpp persons.h global_file.h computer.h)
+add_executable(reservation main.cpp identity.h persons.cpp persons.h global_file.h computer.h order_file.cpp order_file.h global_file.cpp)
