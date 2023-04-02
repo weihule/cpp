@@ -102,6 +102,35 @@ void student_menu(Identity* &student){
     }
 }
 
+// 教师子菜单
+void teacher_menu(Identity* &teacher){
+    while(true){
+        teacher->opera_menu();
+
+        auto* tea = (Teacher*)teacher;
+
+        int select = 0;
+        cout << "请输入操作选项:";
+        cin >> select;
+
+        // 显示预约
+        if(select == 1){
+            tea->show_all_order();
+        }
+        // 审核预约
+        else if(select == 2){
+            tea->valid_order();
+        }
+        else{
+            delete teacher;
+            cout << "注销成功" << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+    }
+}
+
 void login_in(const string& file_name, int select){
     // 用父类指针创建子类对象
     Identity* person = nullptr;
@@ -177,6 +206,7 @@ void login_in(const string& file_name, int select){
                     person = new Teacher(id, name, pwd);    // 堆区
 
                     // 进入教师身份子菜单
+                    teacher_menu(person);
 
                     return;
                 }
@@ -242,19 +272,21 @@ void run(){
     }
 }
 
+class Person{
+public:
+    static void show_peron() {
+        int b = 100;
+    }
+    int m_a;
+};
+
 void test01(){
-    ifstream ifs(STUDENT_FILE);
-    if(ifs.is_open()){
-        cout << "文件存在" << endl;
-    }
-    else{
-        cout << "文件不存在" << endl;
-    }
+
 }
 
 int main() {
     run();
-//    test01();
+    test01();
     system("pause");
     return 0;
 }
