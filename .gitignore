@@ -8,7 +8,13 @@
 */Debug/
 */*.exe
 */*.obj
-*/cmake-build-debug/
+
+# 忽略build文件夹下的内容，但保留build文件夹
+*/build/*
+*/cmake-build-debug/*
+*/win_build/*
+*/linux_build/*
+
 
 # 不要忽略文件夹和子文件夹
 # !/**/
