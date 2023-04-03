@@ -10,11 +10,11 @@
 
 using namespace std;
 
-#define ADMIN_FILE "./txt_files/admin.txt"
-#define STUDENT_FILE "./txt_files/student.txt"
-#define TEACHER_FILE "./txt_files/teacher.txt"
-#define COMPUTER_ROOM_FILE "./txt_files/computer_room.txt"
-#define ORDER_FILE "./txt_files/order.txt"
+#define ADMIN_FILE "../docs/admin.txt"
+#define STUDENT_FILE "../docs/student.txt"
+#define TEACHER_FILE "../docs/teacher.txt"
+#define COMPUTER_ROOM_FILE "../docs/computer_room.txt"
+#define ORDER_FILE "../docs/order.txt"
 
 vector<string> string_split(const string& str, char delim);
 
