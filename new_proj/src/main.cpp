@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include <string.h>
+#include <cstring>
 
 #include "user.h"
 
 void run(){
-    std::cout << "hello" << std::endl;
+    std::cout << "hello111" << std::endl;
     auto *user = new User("tom", 23);
     std::string name = user->get_name();
     std::cout << "name = " << name << std::endl;
@@ -19,6 +19,7 @@ void test(){
 }
 
 int main() {
+    run();
     test();
     return 0;
 }

@@ -15,4 +15,5 @@ aux_source_directory(./src DIR_SRCS)
 
 # 所有需要编译的可执行文件
 # ${DIR_SRCS} 表示 ./src文件夹下的所有源文件都需要编译
-add_executable(new_proj ${DIR_SRCS} src/user.cpp include/user.h)
+# add_executable(new_proj ${DIR_SRCS})
+add_executable(new_proj test1.cpp)
