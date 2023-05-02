@@ -19,7 +19,8 @@
 # 不要忽略文件夹和子文件夹
 # !/**/
 
-# 不要忽略cmake-build-debug/txt_files文件夹下的内容
-!speech/cmake-build-debug/
+# 忽略Qt下编译的结果
+Qts/build*/
+
 */x64/
 */*/x64/
