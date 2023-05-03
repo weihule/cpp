@@ -19,6 +19,9 @@ public:
     // 绘图事件
     void paintEvent(QPaintEvent *);
 
+    int pos_x = 10;
+    int pos_y = 10;
+
     ~MainWindow();
 
 private:
