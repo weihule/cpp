@@ -61,10 +61,37 @@ int run() {
     return 0;
 }
 
-void test(){
-    std::string str = "100c";
-    bool flag = is_all_digit(str);
-    std::cout << flag << std::endl;
+int test(){
+    std::cout << "准备连接数据库" << std::endl;
+    // 创建变量
+    MYSQL mysql;
+    // 初始化变量
+    if(nullptr == mysql_init(&mysql)){
+        std::cout << "初始化失败" << std::endl;
+        return 0;
+    }
+
+    if(!mysql_real_connect(&mysql,"127.0.0.1",
+                           "root","123456",
+                           "db_books",3306,
+                           nullptr,0)){
+        std::cout << "数据库连接失败" << std::endl;
+        return 0;
+    }
+    else{
+        std::cout << "数据库连接成功" << std::endl;
+    }
+    mysql_query(&mysql, "set names gbk");
+    std::string sql = "insert into tb_book (book_name, author, book_concern) value ('项塔兰', '格里高利·大卫·罗伯兹', '华文出版社')";
+    int flag = mysql_query(&mysql, sql.c_str());
+    std::cout << "flag = " << flag << std::endl;
+    return 1;
+}
+
+void test02(){
+    std::string str;
+    std::getline(std::cin, str);
+    std::cout << "str = " << str << std::endl;
 }
 
 int main(){

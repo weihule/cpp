@@ -72,8 +72,9 @@ void add_book(MYSQL& mysql){
     std::cout << "请输入出版社：";
     std::getline(std::cin, book_concern);
 
-    sql += book_name + "' && author='" + author + "' && book_concern='" + book_concern + "'";
     mysql_query(&mysql, "set names gbk");
+    sql += book_name + "' && author='" + author + "' && book_concern='" + book_concern + "'";
+    std::cout << author << "\t" << book_name <<std::endl;
     //mysql_query第二个参数只接受const char* 需进行类型转化
     if(mysql_query(&mysql, sql.c_str())){
         std::cout << "查询失败" << std::endl;
@@ -84,7 +85,6 @@ void add_book(MYSQL& mysql){
     }
     else{
         result = mysql_store_result(&mysql);
-        std::cout << "result = " << result << std::endl;
         unsigned long long int row = mysql_num_rows(result);
         // 已有记录
         if (row > 0){
@@ -127,7 +127,7 @@ void modify_book(MYSQL& mysql){
     MYSQL_ROW row;
     std::string book_name, author, book_concern;
     std::string sql = "select * from tb_book where ID=";
-    std::string sql2 = "update from tb_book set book_name='";
+    std::string sql2 = "update tb_book set book_name='";
     std::string ID;
 
     // 清除上一次输入时缓冲区的\n
@@ -150,8 +150,6 @@ void modify_book(MYSQL& mysql){
         std::cout << "查询失败" << std::endl;
         std::cout << sql << std::endl;
         std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
-        system("pause");
-        return;
     }
     else{
         result = mysql_store_result(&mysql);
@@ -170,10 +168,19 @@ void modify_book(MYSQL& mysql){
 
             std::cout << "出版社：";
             std::getline(std::cin, book_concern);
+
+            sql2 += book_name + "', author='" + author + "', book_concern='" + book_concern + "' where ID=" + ID;
+            if(mysql_query(&mysql, sql2.c_str())){
+                std::cout << "更新失败" << std::endl;
+                std::cout << sql2 << std::endl;
+                std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
+            }
+            else{
+                std::cout << "更新数据成功" << std::endl;
+            }
         }
         else{
             std::cout << "查无此书" << std::endl;
-            return;
         }
     }
     system("pause");
@@ -182,16 +189,55 @@ void modify_book(MYSQL& mysql){
 
 // 删除图书
 void delete_book(MYSQL& mysql){
+    std::string sql = "delete from tb_book where ID=";
+    std::string ID = get_ID();
 
+    if (find_ID2(mysql, ID) == 1){
+        int choice = -1;
+        while(true){
+            std::cout << "是否删除该条信息(1-是  0-否): ";
+            std::cin >> choice;
+            if (choice == 0 || choice == 1) break;
+            else{
+                std::cout << "输入有误，请重新输入" << std::endl;
+                continue;
+            }
+        }
+
+        if (choice){
+            sql += ID;
+            if(mysql_query(&mysql, sql.c_str())){
+                std::cout << "删除失败" << std::endl;
+                std::cout << sql << std::endl;
+                std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
+            }
+            else{
+                std::cout << "删除成功" << std::endl;
+            }
+        }
+    }
+
+    system("pause");
+    system("cls");
 }
 
 // 查询图书
 void query_book(MYSQL& mysql){
+    std::string ID = get_ID();
+    find_ID2(mysql, ID);
 
-}
+    system("pause");
+    system("cls");
 
-bool input_check(const std::string& str, int size){
-
+//    MYSQL_ROW row = find_ID(mysql, ID);
+//    if (row){
+//        std::cout << "ID为 " << ID << " 的书信息如下:" << std::endl;
+//        std::cout << row[0] << "\t" << row[1] << "\t";
+//        std::cout << row[2] << "\t" << row[3] << std::endl;
+//    }
+//    else{
+//        std::cout << "查无此书" << std::endl;
+//    }
 }
 
 bool is_all_digit(const std::string& str){
@@ -201,6 +247,72 @@ bool is_all_digit(const std::string& str){
         }
     }
     return true;
+}
+
+// 返回索引为ID的书信息
+MYSQL_ROW find_ID(MYSQL& mysql, const std::string& ID){
+    MYSQL_RES *result;
+    std::string sql = "select * from tb_book where ID=";
+    sql += ID;
+    mysql_query(&mysql, "set names gbk");
+    if(mysql_query(&mysql, sql.c_str())){
+        std::cout << "查询失败" << std::endl;
+        std::cout << sql << std::endl;
+        std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
+    }
+    else{
+        result = mysql_store_result(&mysql);
+        return mysql_fetch_row(result);
+    }
+}
+
+int find_ID2(MYSQL& mysql, const std::string& ID){
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    std::string sql = "select * from tb_book where ID=";
+    sql += ID;
+
+    mysql_query(&mysql, "set names gbk");
+
+    if(mysql_query(&mysql, sql.c_str())){
+        std::cout << "查询失败" << std::endl;
+        std::cout << sql << std::endl;
+        std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
+        return -1;
+    }
+    else{
+        result = mysql_store_result(&mysql);
+        // 因为使用主键查找，所以row_count非0即1
+        uint64_t row_count = mysql_num_rows(result);
+        if (row_count) {
+            std::cout << "ID为 " << ID << " 的书信息如下:" << std::endl;
+            while ((row = mysql_fetch_row(result))) {
+                std::cout << row[0] << "\t" << row[1] << "\t";
+                std::cout << row[2] << "\t" << row[3] << std::endl;
+            }
+            return 1;
+        }
+        else{
+                std::cout << "查无此书" << std::endl;
+                return 0;
+            }
+    }
+}
+
+std::string get_ID(){
+    // 清除上一次输入时缓冲区的\n
+    std::cin.ignore(100, '\n');
+
+    std::string ID;
+    while(true){
+        puts("请输入ID：");
+        std::getline(std::cin, ID);
+        if(!is_all_digit(ID)){
+            std::cout << "输入有误，请重新输入" << std::endl;
+            continue;
+        }
+        else return ID;
+    }
 }
 
 
