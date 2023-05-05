@@ -130,35 +130,25 @@ void modify_book(MYSQL& mysql){
     std::string sql2 = "update tb_book set book_name='";
     std::string ID;
 
-    // 清除上一次输入时缓冲区的\n
-    std::cin.ignore(100, '\n');
-
-    while(true){
-        puts("请输入ID：");
-        std::getline(std::cin, ID);
-        if(!is_all_digit(ID)){
-            std::cout << "输入有误，请重新输入" << std::endl;
-            continue;
-        }
-        else break;
-    }
+    ID = get_ID();
 
     sql += ID;
     mysql_query(&mysql, "set names gbk");
-    //mysql_query第二个参数只接受const char* 需进行类型转化
-    if(mysql_query(&mysql, sql.c_str())){
-        std::cout << "查询失败" << std::endl;
-        std::cout << sql << std::endl;
-        std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
-    }
-    else{
-        result = mysql_store_result(&mysql);
-        if (mysql_num_rows(result)){
-            std::cout << "ID为 " << ID << " 的书信息如下:" << std::endl;
-            while((row = mysql_fetch_row(result))){
-                std::cout << row[0] << "\t" << row[1] << "\t";
-                std::cout << row[2] << "\t" << row[3] << std::endl;
+
+    int flag = find_ID2(mysql, ID);
+    if(flag == 1){
+        int choice = -1;
+        while(true){
+            std::cout << "是否修改该条信息(1-是  0-否): ";
+            std::cin >> choice;
+            if (choice == 0 || choice == 1) break;
+            else{
+                std::cout << "输入有误，请重新输入" << std::endl;
+                continue;
             }
+        }
+
+        if (choice){
             std::cout << "请输入新的信息：" << std::endl;
             std::cout << "书名：";
             std::getline(std::cin, book_name);
@@ -179,10 +169,8 @@ void modify_book(MYSQL& mysql){
                 std::cout << "更新数据成功" << std::endl;
             }
         }
-        else{
-            std::cout << "查无此书" << std::endl;
-        }
     }
+
     system("pause");
     system("cls");
 }
@@ -229,15 +217,6 @@ void query_book(MYSQL& mysql){
     system("pause");
     system("cls");
 
-//    MYSQL_ROW row = find_ID(mysql, ID);
-//    if (row){
-//        std::cout << "ID为 " << ID << " 的书信息如下:" << std::endl;
-//        std::cout << row[0] << "\t" << row[1] << "\t";
-//        std::cout << row[2] << "\t" << row[3] << std::endl;
-//    }
-//    else{
-//        std::cout << "查无此书" << std::endl;
-//    }
 }
 
 bool is_all_digit(const std::string& str){
@@ -275,7 +254,7 @@ int find_ID2(MYSQL& mysql, const std::string& ID){
     mysql_query(&mysql, "set names gbk");
 
     if(mysql_query(&mysql, sql.c_str())){
-        std::cout << "查询失败" << std::endl;
+        std::cout << "sql语句执行失败" << std::endl;
         std::cout << sql << std::endl;
         std::cout << "错误代码: " << mysql_errno(&mysql) << std::endl;
         return -1;

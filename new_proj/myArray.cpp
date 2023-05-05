@@ -1,28 +1,35 @@
 #include <iostream>
 #include <string>
-#include <mysql.h>
 
-template<class T>
-class MyArray{
-public:
-    MyArray(int capacity);
+class Building{};
+class Animal{};
+class Cat : public Animal{};
 
-    MyArray(const MyArray&);
+void test01(){
+    int a = 97;
+    char c = static_cast<char>(a);
+    std::cout << c << std::endl;
 
-    T& operator[](int index);
+    // 指针
+    // int* p = nullptr;
+    // char* = static_cast<char*>(p);
 
-    MyArray<T> operator=(const MyArray<T>&);
+    // 对象指针
+    // Building* building = nullptr;
+    // Animal* animal = static_cast<Animal*>(building);
 
-    void pushBack(T& data);
+    // 转换具有继承关系的对象指针
+    // 不要使用static_cast从基类向下转换到派生类
+    Animal* animal = nullptr;
+    Cat* cat = static_cast<Cat*>(animal);
 
-    int m_capacity;     // 数组容量
-    int m_size;         // 当前元素个数
-    T* p_addr;          // 保存数据的首地址
+    Cat* cat2 = nullptr;
+    auto* animal2 = static_cast<Animal*>(cat2);
+}
 
-};
 
 int main(){
-    std::cout << "hhh" << std::endl;
+    test01();
 
     std::cin.get();
     return 1;
