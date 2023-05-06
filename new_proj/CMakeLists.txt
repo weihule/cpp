@@ -4,9 +4,6 @@ project(new_proj)
 # 最高支持C++17
 set(CMAKE_CXX_STANDARD 17)
 
-# 输出编译信息
-message("Hello hl!!! Start compile!")
-
 # 添加头文件
 include_directories(include)
 
