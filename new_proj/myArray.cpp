@@ -151,7 +151,7 @@ public:
     [[nodiscard]] const char *what() const noexcept override{
         return this->m_error.c_str();
     }
-
+private:
     std::string m_error;
 };
 
@@ -175,8 +175,54 @@ void test07(){
     }
 }
 
+void test08(){
+    // string -> const char* 需要借助c_str()来实现
+    std::string str1 = "hello world";
+    const char* c_str1 = str1.c_str();
+    std::cout << (*c_str1) << std::endl;
+
+    // const char* -> string 直接可以隐式转换
+    const char* c_str2 = "yes or no";
+    std::string str2 = c_str2;
+    std::cout << (str2) << std::endl;
+}
+
+void test09(){
+    char a = std::cin.get();
+    // std::cin.putback(a);
+
+    char buf[1024] = {0};
+    // std::cin.getline，换行符不在缓冲区，也不会被buf取走，而是直接扔掉
+    std::cin.getline(buf, 1024);
+
+    // 验证我们的回车符是否还在缓冲区
+//    char a = std::cin.get();
+//    if (a == '\n'){
+//        std::cout << "enter remained" << std::endl;
+//    }
+//    else{
+//        std::cout << "enter not remained" << std::endl;
+//    }
+
+    std::cout << buf << std::endl;
+}
+
+void test10(){
+    std::string str = "hello world";
+
+    for (int i = 0; i < str.size(); i++){
+        std::cout << i << " " << str[i] << " " << str.at(i) << std::endl;
+    }
+}
+
+void test11(){
+    std::string str = "he is@ a@ good boy";
+    str = str.replace(str.find('a'), 2, "#");
+    std::cout << str << std::endl;
+}
+
 int main(){
-    test07();
+    test11();
 
     std::cin.get();
     return 1;
