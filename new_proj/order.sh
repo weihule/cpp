@@ -13,8 +13,8 @@ case "$OSTYPE" in
   bsd*)     echo "BSD" ;;
   msys*)    
     echo "WINDOWS"
-    cd ./build
-    cmake -G "Unix Makefiles" ../
+    cd ./cmake-build-debug
+    cmake -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=D:/ProgramFiles/JetBrains/CLion 2022.3.1/bin/ninja/win/ninja.exe"../
     make
     ./new_proj.exe
     ;;
