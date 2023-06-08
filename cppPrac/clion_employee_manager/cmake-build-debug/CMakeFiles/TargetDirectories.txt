@@ -1,0 +1,3 @@
+D:/workspace/c_code/clion_employee_manager/cmake-build-debug/CMakeFiles/clion_employee_manager.dir
+D:/workspace/c_code/clion_employee_manager/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/workspace/c_code/clion_employee_manager/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,6 @@
+# ninja log v5
+8	456	7021897325329815	CMakeFiles/reservation2.dir/src/global_file.cpp.obj	13d88a0b91905605
+2	475	7021897670474590	CMakeFiles/reservation2.dir/src/main.cpp.obj	3a1352fbec877c2
+475	706	7021897672742613	reservation2.exe	ef0dd30cbc593c69
+5	780	7021897328554784	CMakeFiles/reservation2.dir/src/order_file.cpp.obj	107f00cb87d18cdd
+12	974	7021897330498520	CMakeFiles/reservation2.dir/src/persons.cpp.obj	de726d37fc35a6a2

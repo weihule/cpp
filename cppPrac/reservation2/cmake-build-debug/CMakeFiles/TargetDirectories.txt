@@ -1,0 +1,3 @@
+D:/workspace/c_code/reservation2/cmake-build-debug/CMakeFiles/reservation2.dir
+D:/workspace/c_code/reservation2/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/workspace/c_code/reservation2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

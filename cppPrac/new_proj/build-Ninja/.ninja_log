@@ -1,0 +1,4 @@
+# ninja log v5
+1	858	7078293191290241	CMakeFiles/new_proj.dir/myArray.cpp.obj	ac44daa9fd6744cd
+859	975	7078293192388463	new_proj.exe	f9210a35fa1577f7
+0	1423	7078333842748285	CMakeFiles/new_proj.dir/socket_client.cpp.obj	b2cf23f294c4da19
