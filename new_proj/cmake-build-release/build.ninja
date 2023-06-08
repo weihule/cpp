@@ -49,8 +49,8 @@ cmake_ninja_workdir = D$:/workspace/cpp/c_code/new_proj/cmake-build-release/
 
 build cmake_object_order_depends_target_new_proj: phony || CMakeFiles/new_proj.dir
 
-build CMakeFiles/new_proj.dir/myArray.cpp.obj: CXX_COMPILER__new_proj_Release D$:/workspace/cpp/c_code/new_proj/myArray.cpp || cmake_object_order_depends_target_new_proj
-  DEP_FILE = CMakeFiles\new_proj.dir\myArray.cpp.obj.d
+build CMakeFiles/new_proj.dir/service.cpp.obj: CXX_COMPILER__new_proj_Release D$:/workspace/cpp/c_code/new_proj/service.cpp || cmake_object_order_depends_target_new_proj
+  DEP_FILE = CMakeFiles\new_proj.dir\service.cpp.obj.d
   FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
   INCLUDES = -ID:/workspace/cpp/c_code/new_proj/include
   OBJECT_DIR = CMakeFiles\new_proj.dir
@@ -64,9 +64,9 @@ build CMakeFiles/new_proj.dir/myArray.cpp.obj: CXX_COMPILER__new_proj_Release D$
 #############################################
 # Link the executable new_proj.exe
 
-build new_proj.exe: CXX_EXECUTABLE_LINKER__new_proj_Release CMakeFiles/new_proj.dir/myArray.cpp.obj
+build new_proj.exe: CXX_EXECUTABLE_LINKER__new_proj_Release CMakeFiles/new_proj.dir/service.cpp.obj
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\new_proj.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

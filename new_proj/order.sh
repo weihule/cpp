@@ -13,12 +13,18 @@ case "$OSTYPE" in
   bsd*)     echo "BSD" ;;
   msys*)    
     echo "WINDOWS"
-    cd ./cmake-build-debug
-    cmake -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=D:/ProgramFiles/JetBrains/CLion 2022.3.1/bin/ninja/win/ninja.exe"../
-    make
+    if [ ! -d "./build-Ninja/" ];then
+    mkdir ./build-Ninja
+    else
+    echo "build-Ninja is already exist"
+    fi
+    cd ./build-Ninja
+    cmake .. -G Ninja
+    ninja -v
     ./new_proj.exe
     ;;
-  *)        echo "unknown: $OSTYPE" ;;
+  *)        
+  echo "unknown: $OSTYPE" ;;
 esac
 
 # cd ./win_build
