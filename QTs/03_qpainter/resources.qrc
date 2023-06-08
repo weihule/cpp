@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Images/African-hunting-dog_0002.jpg</file>
-        <file>Images/African-hunting-dog_0083.jpg</file>
-        <file>Images/African-hunting-dog_0084.jpg</file>
-        <file>Images/lampshade_0008.jpg</file>
-        <file>Images/lampshade_0009.jpg</file>
-    </qresource>
-</RCC>

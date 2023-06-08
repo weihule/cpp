@@ -1,1 +1,0 @@
-D:\workspace\c_code\employee_manager\x64\Debug\employee_manager.exe

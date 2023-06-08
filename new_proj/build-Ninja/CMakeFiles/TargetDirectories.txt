@@ -1,3 +1,0 @@
-D:/workspace/cpp/c_code/new_proj/build-Ninja/CMakeFiles/new_proj.dir
-D:/workspace/cpp/c_code/new_proj/build-Ninja/CMakeFiles/edit_cache.dir
-D:/workspace/cpp/c_code/new_proj/build-Ninja/CMakeFiles/rebuild_cache.dir
