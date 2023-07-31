@@ -1,0 +1,25 @@
+# ninja log v5
+2	405	7124139417816700	CMakeFiles/advance_study.dir/main.cpp.obj	81bc53ef32458459
+6	329	7124150928461974	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+301	400	7124151268035263	advance_study.exe	6092a7def5ec5082
+0	147	7124151788120610	build.ninja	7a6141080e62c4e6
+2	301	7124151267070067	CMakeFiles/advance_study.dir/src/game1.cpp.obj	ed32dc09e61aa9fe
+4	463	7124152275223834	CMakeFiles/advance_study.dir/src/game2.cpp.obj	9386f5d9224c7eef
+10	463	7124152275223834	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+2	324	7124153842484920	CMakeFiles/advance_study.dir/src/game1.cpp.obj	ed32dc09e61aa9fe
+6	325	7124153842484920	CMakeFiles/advance_study.dir/src/game2.cpp.obj	9386f5d9224c7eef
+9	330	7124153842544923	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+330	432	7124153843537084	advance_study.exe	e238aef64cde9aaa
+6	345	7124160130731548	CMakeFiles/advance_study.dir/src/game2.cpp.obj	9386f5d9224c7eef
+2	346	7124160130741543	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+346	456	7124160131815460	advance_study.exe	e238aef64cde9aaa
+1	309	7124161838012108	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+310	413	7124161839022375	advance_study.exe	e238aef64cde9aaa
+2	889	7124841190165636	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+889	1091	7124841192161258	advance_study.exe	e238aef64cde9aaa
+2	291	7124842336577940	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+291	390	7124842337537820	advance_study.exe	e238aef64cde9aaa
+2	302	7125176581923294	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+302	405	7125176582930054	advance_study.exe	e238aef64cde9aaa
+2	304	7125176750431465	CMakeFiles/advance_study.dir/src/main.cpp.obj	bed40897c2bf9c2d
+305	405	7125176751402883	advance_study.exe	e238aef64cde9aaa
