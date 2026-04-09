@@ -47,6 +47,10 @@
 *.userosscache
 *.sln.docstates
 
+build/
+cmake-build-*/
+out/
+
 # 编译产物
 Debug/
 Release/
