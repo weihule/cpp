@@ -10,29 +10,29 @@ private:
 	int memberID;
 	std::string name;
 	std::string email;
-	std::vector<int> borrowedBooks;  // ´æ´¢½è³öID
-	int maxBooks;	// ×î¶à½è³öÊı
+	std::vector<int> borrowedBooks;  // å­˜å‚¨å€Ÿå‡ºçš„ä¹¦ç±ID
+	int maxBooks;	// æœ€å¤šèƒ½å€Ÿçš„ä¹¦æ•°
 
 public:
-	// ¹¹Ôìº¯Êı
+	// æ„é€ å‡½æ•°
 	Member(int id, std::string name, std::string email);
 
 	// Getter
-	int getID() const { return memberID; }
-	std::string getName() const { return name; }
-	std::string getEmail() const { return email; }
-	std::vector<int> getBorrowedBooks() const { return borrowedBooks; }
-	int getBorrowCount() const { return borrowedBooks.size(); }
+	[[nodiscard]] int getID() const { return memberID; }
+	[[nodiscard]] std::string getName() const { return name; }
+	[[nodiscard]] std::string getEmail() const { return email; }
+	[[nodiscard]] std::vector<int> getBorrowedBooks() const { return borrowedBooks; }
+	[[nodiscard]] size_t getBorrowCount() const { return borrowedBooks.size(); }
 
-	// ½è²Ù×÷
+	// å€Ÿ
 	bool borrowBook(int bookID);
 
-	// »¹²Ù×÷
+	// è¿˜
 	bool returnBook(int bookID);
 
-	// ¼ì²éÊÇ·ñ¿ÉÒÔÔÙ½è
-	bool canBorrow() const { return borrowedBooks.size() < maxBooks; }
+	// æ£€æŸ¥æ˜¯å¦å¯ä»¥å†å€Ÿ
+	[[nodiscard]] bool canBorrow() const { return borrowedBooks.size() < maxBooks; }
 
-	// ÏÔÊ¾ĞÅÏ¢
+	// æ˜¾ç¤ºä¼šå‘˜ä¿¡æ¯
 	void display() const;
 };

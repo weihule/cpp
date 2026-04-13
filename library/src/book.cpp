@@ -5,10 +5,10 @@ Book::Book(int id, std::string title, std::string author, std::string isbn)
 
 void Book::display() const {
 	std::cout << "ID: " << bookID
-			<< " | ÊéÃû: " << title
-			<< " | ×÷Õß: " << author
+			<< " | ä¹¦å: " << title
+			<< " | ä½œè€…: " << author
 			<< " | ISBN: " << isbn
-			<< " | ×´Ì¬: " << (isAvailable ? "¿É½è" : "ÒÑ½è³ö") << "\n";
+	        << " | çŠ¶æ€: " << (isAvailable ? "å¯å€Ÿ" : "å·²å€Ÿå‡º") << "\n";
 }
 
 

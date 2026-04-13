@@ -12,7 +12,7 @@ private:
 	bool isAvailable;
 
 public:
-	// ¹¹Ôìº¯Êı
+	// æ„é€ å‡½æ•°
 	Book(int id, std::string title, std::string author, std::string idbn);
 
 	// Getter
@@ -22,13 +22,13 @@ public:
 	std::string getISBN() const { return isbn; }
 	bool getAvailable() const { return isAvailable; }
 
-	// ÉèÖÃ¿ÉÓÃ×´Ì¬
+	// è®¾ç½®å¯ç”¨çŠ¶æ€
 	void setAvailable(bool available) { isAvailable = available; }
 
-	// ÏÔÊ¾ĞÅÏ¢
+	// æ˜¾ç¤ºä¿¡æ¯
 	void display() const;
 
-	// ÅĞ¶ÏÊÇ·ñÆ¥ÅäËÑË÷Ìõ¼ş
+	// åˆ¤æ–­æ˜¯å¦åŒ¹é…æœç´¢æ¡ä»¶
 	bool matchTitle(const std::string& searchTitle) const;
 	bool matchAuthor(const std::string& searchAuthor) const;
 };
