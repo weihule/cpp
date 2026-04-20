@@ -15,6 +15,7 @@ private:
 
 public:
 	// 构造函数
+	Member();
 	Member(int id, std::string name, std::string email);
 
 	// Getter

@@ -1,8 +1,15 @@
-#include "member.h"
 #include <algorithm>
 
+#include "member.h"
+
+Member::Member()
+    : memberID(0), name(""), email(""), maxBooks(5) {}
+
 Member::Member(int id, std::string name, std::string email)
-    : memberID(id), name(std::move(name)), email(std::move(email)), maxBooks(5){}
+    : memberID(id),
+      name(std::move(name)),
+      email(std::move(email)),
+      maxBooks(5){}
 
 bool Member::borrowBook(int bookID) {
     if (borrowedBooks.size() < maxBooks) {
