@@ -50,6 +50,7 @@
 build/
 cmake-build-*/
 out/
+.idea/
 
 # 编译产物
 Debug/
